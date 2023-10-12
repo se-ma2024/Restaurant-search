@@ -32,3 +32,10 @@ val Typography = Typography(
     )
     */
 )
+
+val Title = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Bold,
+    fontSize = 48.sp,
+    lineHeight = 22.sp
+)
