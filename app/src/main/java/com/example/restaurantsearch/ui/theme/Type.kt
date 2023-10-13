@@ -39,3 +39,10 @@ val Title = TextStyle(
     fontSize = 48.sp,
     lineHeight = 22.sp
 )
+
+val Label = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 24.sp,
+    lineHeight = 8.sp
+)
