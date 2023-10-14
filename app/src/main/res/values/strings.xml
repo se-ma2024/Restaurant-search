@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Restaurant Search</string>
+    <string name="BusinessHours">営業時間</string>
 </resources>
