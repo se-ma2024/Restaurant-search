@@ -44,7 +44,13 @@ val Label = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
     fontSize = 24.sp,
-    lineHeight = 8.sp
+    lineHeight = 28.sp
+)
+val SubLabel = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 20.sp,
+    lineHeight = 24.sp
 )
 
 val Information = TextStyle(
