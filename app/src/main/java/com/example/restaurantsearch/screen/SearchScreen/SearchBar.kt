@@ -1,5 +1,6 @@
-package com.example.restaurantsearch.component
+package com.example.restaurantsearch.screen.SearchScreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -30,12 +31,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(onSearch: (String) -> Unit) {
+fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
     var text by remember { mutableStateOf(TextFieldValue()) }
-
     TopAppBar(
         modifier = Modifier
             .background(Color.Transparent)
@@ -74,6 +76,7 @@ fun SearchBar(onSearch: (String) -> Unit) {
                     keyboardActions = KeyboardActions(
                         onSearch = {
                             onSearch(text.text)
+                            navController.navigate("SearchResult")
                         }
                     )
                 )
@@ -86,7 +89,8 @@ fun SearchBar(onSearch: (String) -> Unit) {
 @Preview
 @Composable
 fun PreviewSerchBar() {
-    SearchBar { query ->
-        android.util.Log.d("SearchBarExample", "検索クエリ: $query")
+    val navController = rememberNavController()
+    SearchBar(navController = navController) { query ->
+        Log.d("SearchBarExample", "検索クエリ: $query")
     }
 }

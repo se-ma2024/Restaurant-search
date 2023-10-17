@@ -1,4 +1,4 @@
-package com.example.restaurantsearch.component
+package com.example.restaurantsearch.screen.DetailScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,9 +14,9 @@ import com.example.restaurantsearch.ui.theme.Label
 
 @Composable
 fun DetailCatchphrase() {
-    val Catchphrase: String = "TVの口コミランキングで堂々1位に輝いた一口餃子専門店！！"
+    val Catch: String = "TVの口コミランキングで堂々1位に輝いた一口餃子専門店！！"
     Text(
-        text = Catchphrase,
+        text = Catch,
         maxLines = 10,
         style = Label,
         overflow = TextOverflow.Ellipsis,

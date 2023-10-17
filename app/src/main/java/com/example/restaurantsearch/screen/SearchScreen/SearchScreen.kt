@@ -1,5 +1,6 @@
-package com.example.restaurantsearch.screen
+package com.example.restaurantsearch.screen.SearchScreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,13 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.restaurantsearch.component.SearchBar
-import com.example.restaurantsearch.component.SelectRange
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.restaurantsearch.ui.theme.Label
 import com.example.restaurantsearch.ui.theme.Title
 
 @Composable
-fun SearchScreenContent(modifier: Modifier = Modifier) {
+fun SearchScreenContent(navController: NavHostController, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -41,8 +42,8 @@ fun SearchScreenContent(modifier: Modifier = Modifier) {
                 style = Title
             )
             Spacer(modifier = Modifier.height(30.dp))
-            SearchBar { query ->
-                android.util.Log.d("SearchBarExample", "検索クエリ: $query")
+            SearchBar(navController = navController) { query ->
+                Log.d("SearchBarExample", "検索クエリ: $query")
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -65,5 +66,6 @@ fun SearchScreenContent(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun PreviewSearchbarContent() {
-    SearchScreenContent()
+    val navController: NavHostController = rememberNavController()
+    SearchScreenContent(navController = navController)
 }

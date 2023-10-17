@@ -1,4 +1,4 @@
-package com.example.restaurantsearch.component
+package com.example.restaurantsearch.screen.DetailScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

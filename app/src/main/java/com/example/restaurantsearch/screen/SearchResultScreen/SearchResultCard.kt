@@ -1,4 +1,4 @@
-package com.example.restaurantsearch.component
+package com.example.restaurantsearch.screen.SearchResultScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,6 +28,10 @@ import com.example.restaurantsearch.ui.theme.Label
 
 @Composable
 fun SearchResultCard() {
+    val RestauranName = "居酒屋 ホットペッパー"
+    val ThumbnailImageURL = ""
+    val Catch = "TVの口コミランキングで堂々1位に輝いた一口餃子専門店！！"
+    val BusinessHours = "月～金／11：30～14：00"
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -44,7 +48,7 @@ fun SearchResultCard() {
             Row(horizontalArrangement = Arrangement.Center) {
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    text = "居酒屋 ホットペッパー",
+                    text = RestauranName,
                     style = Label,
                 )
             }
@@ -58,7 +62,7 @@ fun SearchResultCard() {
                 Spacer(modifier = Modifier.width(16.dp))
                 Column() {
                     Text(
-                        text = "TVの口コミランキングで堂々1位に輝いた一口餃子専門店！！",
+                        text = Catch,
                         style = Explanation,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
@@ -75,7 +79,7 @@ fun SearchResultCard() {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "月～金／11：30～14：00"
+                            text = BusinessHours
                         )
                     }
                 }

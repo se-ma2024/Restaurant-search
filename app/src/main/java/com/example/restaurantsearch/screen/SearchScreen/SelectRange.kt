@@ -1,4 +1,4 @@
-package com.example.restaurantsearch.component
+package com.example.restaurantsearch.screen.SearchScreen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box

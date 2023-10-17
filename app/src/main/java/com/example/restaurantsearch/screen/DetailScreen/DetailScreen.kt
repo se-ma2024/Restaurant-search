@@ -1,4 +1,4 @@
-package com.example.restaurantsearch.screen
+package com.example.restaurantsearch.screen.DetailScreen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -14,10 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.restaurantsearch.component.DetailCatchphrase
-import com.example.restaurantsearch.component.DetailImage
-import com.example.restaurantsearch.component.DetailStore
-import com.example.restaurantsearch.component.DetailTopBar
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
