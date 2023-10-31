@@ -9,6 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -16,11 +17,11 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(navController: NavHostController) {
+fun TopBar(searchWord: TextFieldValue, navController: NavHostController) {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = "My App",
+                text = searchWord.text,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -51,5 +52,6 @@ fun TopBar(navController: NavHostController) {
 @Composable
 fun PreviewTopBar() {
     val navController = rememberNavController()
-    TopBar(navController)
+    val searchWord = "searchWord"
+    TopBar(searchWord = TextFieldValue(searchWord), navController)
 }

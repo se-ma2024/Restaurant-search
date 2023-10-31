@@ -1,6 +1,5 @@
 package com.example.restaurantsearch.screen.SearchScreen
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,19 +12,33 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.restaurantsearch.screen.SearchResultScreen.SearchResultViewModel
 import com.example.restaurantsearch.ui.theme.Label
 import com.example.restaurantsearch.ui.theme.Title
 
 @Composable
-fun SearchScreenContent(navController: NavHostController, modifier: Modifier = Modifier) {
+fun SearchScreen(navController: NavHostController, modifier: Modifier = Modifier) {
+
+    var searchWord by remember { mutableStateOf("") }
+    var selectRange by remember { mutableStateOf(3) }
+
+    val viewModel = viewModel<SearchResultViewModel>()
+
+
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -42,8 +55,8 @@ fun SearchScreenContent(navController: NavHostController, modifier: Modifier = M
                 style = Title
             )
             Spacer(modifier = Modifier.height(30.dp))
-            SearchBar(navController = navController) { query ->
-                Log.d("SearchBarExample", "検索クエリ: $query")
+            SearchBar(navController = navController) { text ->
+                searchWord = text
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -56,7 +69,9 @@ fun SearchScreenContent(navController: NavHostController, modifier: Modifier = M
                     color = Black,
                     style = Label,
                 )
-                SelectRange()
+                SelectRange(selectRange) { range ->
+                    selectRange = range
+                }
             }
         }
     }
@@ -65,7 +80,7 @@ fun SearchScreenContent(navController: NavHostController, modifier: Modifier = M
 
 @Preview
 @Composable
-fun PreviewSearchbarContent() {
+fun PreviewSearchScreen() {
     val navController: NavHostController = rememberNavController()
-    SearchScreenContent(navController = navController)
+    SearchScreen(navController = navController)
 }

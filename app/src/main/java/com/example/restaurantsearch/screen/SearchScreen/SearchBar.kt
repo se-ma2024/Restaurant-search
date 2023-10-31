@@ -37,7 +37,21 @@ import androidx.navigation.compose.rememberNavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
-    var text by remember { mutableStateOf(TextFieldValue()) }
+
+    var searchWord by remember { mutableStateOf("") }
+    var selectRange by remember { mutableStateOf(2) }
+
+
+//    SearchResultScreen(
+//        searchWord = searchWord, // searchWord変数を渡す
+//        navController = navController
+//    )
+
+//    val searchKeyword = searchWord.text
+//    val restaurantData = fetchRestaurants(API_KEY, searchKeyword)
+
+    //val restaurantData = fetchRestaurants(API_KEY, searchWord)
+
     TopAppBar(
         modifier = Modifier
             .background(Color.Transparent)
@@ -48,9 +62,9 @@ fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 TextField(
-                    value = text,
+                    value = searchWord,
                     onValueChange = {
-                        text = it
+                        searchWord = it
                     },
                     placeholder = { Text("検索...") },
                     modifier = Modifier.weight(1f),
@@ -69,14 +83,14 @@ fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
                             Icons.Sharp.Close,
                             contentDescription = "×",
                             modifier = Modifier.clickable { // クリックハンドラを設定
-                                text = TextFieldValue() // テキストをクリア
+                                searchWord = "" // テキストをクリア
                             }
                         )
                     },
                     keyboardActions = KeyboardActions(
                         onSearch = {
-                            onSearch(text.text)
-                            navController.navigate("SearchResult")
+                            onSearch(searchWord)
+                            navController.navigate("SearchResult/${searchWord},${selectRange}")
                         }
                     )
                 )

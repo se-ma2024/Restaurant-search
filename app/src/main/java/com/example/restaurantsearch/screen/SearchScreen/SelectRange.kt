@@ -22,11 +22,11 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SelectRange() {
+fun SelectRange(selectRange: Int, onRangeSelect: (Int) -> Unit) {
     val context = LocalContext.current
-    val selectRange = arrayOf("300m", "500m", "1000m", "2000m", "3000m")
+    val selectRangeLabel = arrayOf("300m", "500m", "1000m", "2000m", "3000m")
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(selectRange[2]) }
+    var selectedText by remember { mutableStateOf(selectRangeLabel[2]) }
 
     Box(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun SelectRange() {
             }
         ) {
             TextField(
-                value = selectedText,
+                value = selectRangeLabel[selectRange - 1], // selectRangeに応じたラベルを表示
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -51,13 +51,15 @@ fun SelectRange() {
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                selectRange.forEach { item ->
+                selectRangeLabel.forEachIndexed { index, item ->
                     DropdownMenuItem(
                         text = { Text(text = item) },
                         onClick = {
                             selectedText = item
                             expanded = false
                             Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                            val range = index + 1
+                            onRangeSelect(range)
                         }
                     )
                 }
@@ -69,5 +71,8 @@ fun SelectRange() {
 @Preview
 @Composable
 fun PreviewSelectRange() {
-    SelectRange()
+    var selectRange by remember { mutableStateOf(2) }
+    SelectRange(selectRange) { range ->
+        selectRange = range
+    }
 }

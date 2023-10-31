@@ -1,5 +1,6 @@
 package com.example.restaurantsearch.screen.SearchResultScreen
 
+//import com.example.restaurantsearch.data.dataSource.Article
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,22 +17,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.example.restaurantsearch.R
+import com.example.restaurantsearch.data.dataSource.Article
 import com.example.restaurantsearch.ui.theme.Explanation
 import com.example.restaurantsearch.ui.theme.Information
 import com.example.restaurantsearch.ui.theme.Label
 
 @Composable
-fun SearchResultCard() {
-    val RestauranName = "居酒屋 ホットペッパー"
-    val ThumbnailImageURL = ""
-    val Catch = "TVの口コミランキングで堂々1位に輝いた一口餃子専門店！！"
-    val BusinessHours = "月～金／11：30～14：00"
+fun SearchResultCard(article: Article) {
+    val painter = article.thumbnailImageURL
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,7 +47,7 @@ fun SearchResultCard() {
             Row(horizontalArrangement = Arrangement.Center) {
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    text = RestauranName,
+                    text = article.restauranName ?: "情報なし",
                     style = Label,
                 )
             }
@@ -56,13 +55,19 @@ fun SearchResultCard() {
             Row(modifier = Modifier.padding(end = 16.dp)) {
                 Spacer(modifier = Modifier.width(12.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = null
+                    //painter = painter,
+                    //painterResource(id = R.drawable.ic_launcher_background),
+                    painter = rememberImagePainter(article.thumbnailImageURL),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .width(100.dp) // 幅を指定
+                        .height(100.dp) // 高さを指定
+                        .background(color = Color.LightGray)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column() {
                     Text(
-                        text = Catch,
+                        text = article.catch ?: "情報なし",
                         style = Explanation,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
@@ -79,7 +84,7 @@ fun SearchResultCard() {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = BusinessHours
+                            text = article.businessHours ?: "情報なし"
                         )
                     }
                 }
@@ -91,5 +96,13 @@ fun SearchResultCard() {
 @Preview
 @Composable
 fun PreviewSearchResultCard() {
-    SearchResultCard()
+    val article = Article(
+        restauranId = "123",
+        restauranName = "サンプルレストラン",
+        thumbnailImageURL = "https://example.com/sample_image.jpg", // 仮の画像のURL
+        catch = "レストランのキャッチフレーズのサンプルです。これはカードで切り詰められる長いキャッチフレーズです。",
+        businessHours = "月曜日から金曜日：10時 - 20時"
+    )
+
+    SearchResultCard(article = article)
 }
