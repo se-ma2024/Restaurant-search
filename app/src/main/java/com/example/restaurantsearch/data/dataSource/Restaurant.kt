@@ -206,14 +206,14 @@ data class ArticleResponse(
     }
 }
 
-
 @Serializable
 data class Article(
     val restauranId: String?, // お店ID
-    val restauranName: String?, // 掲載店名
+    val restaurantName: String?, // 掲載店名
     val thumbnailImageURL: String?, // ロゴ画像のURL
     val catch: String?, // お店のキャッチ
-    val businessHours: String? // 営業時間
+    val businessHours: String?, // 営業時間
+    val access: String? //アクセス情報
 )
 
 @Serializable
@@ -224,12 +224,4 @@ data class Detail(
     val BusinessHours: String,
     val RegularHoliday: String,
     val Address: String
-)
-
-@Serializable
-data class Contributor(
-    val id: String,
-    val nickname: String,
-    val introduction: String,
-    val imageURL: String
 )

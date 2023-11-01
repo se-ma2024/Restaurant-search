@@ -15,13 +15,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-
 class SearchResultViewModel(private val repository: WikiRepository = WikiRepositoryImpl()) :
     ViewModel() {
-
     private val _articles = MutableStateFlow<List<Article>>(emptyList())
     val articles: StateFlow<List<Article>> = _articles
-
     fun fetchArticles(
         key: String,
         keyword: String,
@@ -59,10 +56,11 @@ class SearchResultViewModel(private val repository: WikiRepository = WikiReposit
         _articles.value = response.results.shops?.map { response ->
             Article(
                 restauranId = response.id,
-                restauranName = response.name,
+                restaurantName = response.name,
                 thumbnailImageURL = response.logoImage,
-                catch = response.catchPhrase,
-                businessHours = response.open
+                catch = response.genre?.catch,
+                businessHours = response.open,
+                access = response.access
             )
         } ?: emptyList()
     }

@@ -14,10 +14,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.restaurantsearch.data.dataSource.Article
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DetaleScreen() {
+fun DetaleScreen(restaurant: Article) {
     val navController: NavHostController = rememberNavController()
 
     LazyColumn(
@@ -27,7 +28,7 @@ fun DetaleScreen() {
     ) {
         stickyHeader {
             // このセクション内のコンポーネントはスクロールせずに固定されます
-            DetailTopBar(navController = navController)
+            DetailTopBar(restaurantName = restaurant.restaurantName, navController = navController)
         }
         item {
             //DetailTopBar(navController = navController)
@@ -45,6 +46,15 @@ fun DetaleScreen() {
 @Preview
 @Composable
 fun PreviewDetaleScreen() {
-    //val navController:NavHostController = rememberNavController()
-    DetaleScreen()
+    val dummyArticle = Article(
+        restauranId = "J003340731",
+        restaurantName = "中華そば 福笑門",
+        thumbnailImageURL = "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif",
+        catch = "一度食べたらハマるラーメン",
+        businessHours = "月～土、祝日、祝前日: 11:00～15:00、17:00～22:00",
+        access = "布施駅から徒歩2分"
+        // 他の詳細情報を追加
+    )
+
+    DetaleScreen(restaurant = dummyArticle)
 }

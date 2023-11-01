@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
@@ -36,21 +35,10 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
+fun SearchBar(navController: NavHostController, selectRange: Int, onSearch: (String) -> Unit) {
 
     var searchWord by remember { mutableStateOf("") }
-    var selectRange by remember { mutableStateOf(2) }
-
-
-//    SearchResultScreen(
-//        searchWord = searchWord, // searchWord変数を渡す
-//        navController = navController
-//    )
-
-//    val searchKeyword = searchWord.text
-//    val restaurantData = fetchRestaurants(API_KEY, searchKeyword)
-
-    //val restaurantData = fetchRestaurants(API_KEY, searchWord)
+    var selectRange = selectRange
 
     TopAppBar(
         modifier = Modifier
@@ -89,8 +77,12 @@ fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
                     },
                     keyboardActions = KeyboardActions(
                         onSearch = {
-                            onSearch(searchWord)
-                            navController.navigate("SearchResult/${searchWord},${selectRange}")
+                            if (searchWord.isNotBlank()) {
+                                onSearch(searchWord)
+                                navController.navigate("SearchResult/${searchWord},${selectRange}")
+                            } else {
+                                navController.navigate("SearchResult/null,${selectRange}")
+                            }
                         }
                     )
                 )
@@ -104,7 +96,8 @@ fun SearchBar(navController: NavHostController, onSearch: (String) -> Unit) {
 @Composable
 fun PreviewSerchBar() {
     val navController = rememberNavController()
-    SearchBar(navController = navController) { query ->
+    val selectRange = 3
+    SearchBar(navController = navController, selectRange) { query ->
         Log.d("SearchBarExample", "検索クエリ: $query")
     }
 }

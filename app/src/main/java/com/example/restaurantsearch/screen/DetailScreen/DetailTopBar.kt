@@ -15,12 +15,11 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailTopBar(navController: NavController) {
-    val StoreName: String = "居酒屋 ホットペッパー"
+fun DetailTopBar(restaurantName: String?, navController: NavController) {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = StoreName, maxLines = 1, overflow = TextOverflow.Ellipsis
+                text = restaurantName ?: "", maxLines = 1, overflow = TextOverflow.Ellipsis
             )
         },
         navigationIcon = {
@@ -36,5 +35,6 @@ fun DetailTopBar(navController: NavController) {
 @Composable
 fun PreviewDetailTopBar() {
     val navController = rememberNavController()
-    DetailTopBar(navController)
+    val restaurantName = "ラーメン屋さんですお"
+    DetailTopBar(restaurantName, navController)
 }

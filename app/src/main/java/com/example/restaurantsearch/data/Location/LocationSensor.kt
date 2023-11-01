@@ -16,7 +16,6 @@ import com.google.android.gms.location.LocationServices
 class LocationSensor(val activity: MainActivity) {
     private val _location: MutableLiveData<Location> = MutableLiveData<Location>()
     val location: LiveData<Location> get()  = _location
-
     fun requestLocationPermission(activity: Activity) {
         val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
@@ -51,7 +50,6 @@ class LocationSensor(val activity: MainActivity) {
             Log.d("LocationSensor", "権限がない")
             return
         }
-
         fusedLocationClient.lastLocation
             .addOnSuccessListener(activity) { location ->
                 Log.d("LocationSensor", "$location")

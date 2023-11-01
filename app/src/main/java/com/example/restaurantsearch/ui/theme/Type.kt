@@ -42,8 +42,8 @@ val Title = TextStyle(
 
 val Label = TextStyle(
     fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.Normal,
-    fontSize = 24.sp,
+    fontWeight = FontWeight.Bold,
+    fontSize = 20.sp,
     lineHeight = 28.sp
 )
 val SubLabel = TextStyle(
