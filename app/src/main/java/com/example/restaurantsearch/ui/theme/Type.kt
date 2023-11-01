@@ -15,22 +15,6 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )
 
 val Title = TextStyle(
@@ -44,6 +28,12 @@ val Label = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Bold,
     fontSize = 20.sp,
+    lineHeight = 28.sp
+)
+val SearchLabel = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
     lineHeight = 28.sp
 )
 val SubLabel = TextStyle(
@@ -65,4 +55,11 @@ val Explanation = TextStyle(
     fontWeight = FontWeight.Normal,
     fontSize = 16.sp,
     //lineHeight = 4.sp
+)
+
+val CountLabel = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 20.sp,
+    lineHeight = 4.sp
 )

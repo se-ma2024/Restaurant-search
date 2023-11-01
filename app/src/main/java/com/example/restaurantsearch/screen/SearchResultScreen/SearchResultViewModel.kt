@@ -1,8 +1,5 @@
 package com.example.restaurantsearch.screen.SearchResultScreen
 
-//import com.example.restaurantsearch.data.api.RestaurantRepository
-//import com.example.restaurantsearch.data.dataSource.Article
-//import com.example.restaurantsearch.data.api.RestaurantApiClient
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -13,6 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.restaurantsearch.ui.theme.SearchLabel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +28,7 @@ fun TopBar(searchWord: TextFieldValue, navController: NavHostController) {
             Text(
                 text = searchWordLabel,
                 maxLines = 1,
+                style = SearchLabel,
                 overflow = TextOverflow.Ellipsis
             )
         },
